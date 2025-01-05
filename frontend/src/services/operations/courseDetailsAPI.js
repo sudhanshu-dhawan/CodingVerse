@@ -75,6 +75,7 @@ export const fetchCourseCategories = async () => {
       throw new Error("Could Not Fetch Course Categories")
     }
     result = response?.data?.data
+    console.log("categories fetched successfully")
   } catch (error) {
     console.log("COURSE_CATEGORY_API API ERROR............", error)
     toast.error(error.message)

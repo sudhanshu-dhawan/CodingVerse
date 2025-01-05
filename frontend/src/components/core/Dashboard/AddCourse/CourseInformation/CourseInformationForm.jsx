@@ -35,9 +35,10 @@ export default function CourseInformationForm() {
   useEffect(() => {
     const getCategories = async () => {
       setLoading(true)
-      const categories = await fetchCourseCategories()
+      const categories = await fetchCourseCategories();
+      console.log("categories in frontend wala", categories)
       if (categories.length > 0) {
-        // console.log("categories", categories)
+        console.log("categories", categories)
         setCourseCategories(categories)
       }
       setLoading(false)
@@ -244,7 +245,7 @@ export default function CourseInformationForm() {
         {errors.courseCategory && (
           <span className="ml-2 text-xs tracking-wide text-pink-200">
             Course Category is required
-          </span>
+          </span>  //hereeee
         )}
       </div>
       {/* Course Tags */}

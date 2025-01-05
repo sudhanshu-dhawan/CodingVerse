@@ -21,33 +21,34 @@ exports.capturePayment = async (req, res) => {
   let total_amount = 0
 
   for (const course_id of courses) {
-    let course
+    let course;
     try {
       // Find the course by its ID
-      course = await Course.findById(course_id)
-
+      course = await Course.findById(course_id);
+  
       // If the course is not found, return an error
       if (!course) {
         return res
           .status(200)
-          .json({ success: false, message: "Could not find the Course" })
+          .json({ success: false, message: "Could not find the Course" });
       }
-
+  
       // Check if the user is already enrolled in the course
-      const uid = new mongoose.Types.ObjectId(userId)
-      if (course.studentsEnroled.includes(uid)) {
+      const uid = new mongoose.Types.ObjectId(userId);
+      if (course.studentsEnrolled.some((student) => student.equals(uid))) {
         return res
           .status(200)
-          .json({ success: false, message: "Student is already Enrolled" })
+          .json({ success: false, message: "Student is already Enrolled" });
       }
-
+  
       // Add the price of the course to the total amount
-      total_amount += course.price
+      total_amount += course.price;
     } catch (error) {
-      console.log(error)
-      return res.status(500).json({ success: false, message: error.message })
+      console.log(error);
+      return res.status(500).json({ success: false, message: error.message });
     }
   }
+  
 
   const options = {
     amount: total_amount * 100,
