@@ -21,7 +21,7 @@ dbConnect();
 //middlewares
 app.use(express.json());
 app.use(cookieParser());
-const allowedOrigins = ['http://localhost:3000', 'https://coding-verse.vercel.app'];
+const allowedOrigins = ['https://codingverse-full.onrender.com'];
 
 const corsOptions = {
   origin: function (origin, callback) {
